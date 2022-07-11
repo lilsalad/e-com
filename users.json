@@ -8,5 +8,10 @@
     "email": "testadmin3@bestecom.com",
     "password": "712f31721add5d70134408b8590b5cf9668e0cbed9929512bbc7e840475161a40887dff6b37e2c1aef878d00b6fbdd72f733181fe0c4a4a83f96dfb6562586ab.51b9441fa266755a",
     "id": "59f71b10"
+  },
+  {
+    "email": "superadmin@bestecom.com",
+    "password": "ffbb13078d8fe411d751610b878e851e989dc023d9b508185c2fbb34c7ade39b5b5e0b20e845efd5709397f990ce9c3dd59dccbb15472f387c554bff78adf4f7.a4df3a6798b3a191",
+    "id": "add1bec8"
   }
 ]

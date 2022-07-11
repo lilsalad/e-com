@@ -7,7 +7,7 @@ module.exports = {
     .normalizeEmail()
     .isEmail()
     .withMessage('Must be a valid email!')
-    .custom( async email => {
+    .custom( async (email) => {
         const existingUser = await usersRepo.getOneBy({email});
         if(existingUser){
             throw new Error('Email already in use!');
@@ -25,7 +25,10 @@ module.exports = {
     .withMessage('Must be between 4 and 20 characters!')
     .custom((passwordConfirmation, {req}) => {
         if (passwordConfirmation !== req.body.password){
-            throw new Error('Passwords must match!')
+            throw new Error('Passwords must match!');
+        }
+        else{
+            return true;
         }
     }),
 
@@ -48,13 +51,21 @@ module.exports = {
         if(!user){
             throw new Error ('Invalid login credentials!');
         }
-        const validPassword = await usersRepo.comparePassword(
-            user.password,
-            password
-        );
+        const validPassword = await usersRepo.comparePassword(user.password, password);
         if(!validPassword){
             throw new Error ('Invalid login credentials!');
         }
-    })
+    }),
+
+    requireTitle: check('title')
+    .trim()
+    .isLength({min: 5, max: 40})
+    .withMessage('Must be between 5 and 40 characters!'),
+
+    requirePrice: check('price')
+    .trim()
+    .toFloat()
+    .isFloat({min: 1})
+    .withMessage('Must be a number greater than 1!')
 };
 
